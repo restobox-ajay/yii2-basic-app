@@ -2,9 +2,9 @@
 
 if (YII_ENV == 'local') {
     return [
-        'supportEmail' => 'no-reply@darbys-b2b.local',
-        'replyToEmail' => 'info@darbys-b2b.local',
-        'appUrl' => 'http://darbys-b2b.local',
+        'supportEmail' => 'no-reply@yii2-basic-app.local',
+        'replyToEmail' => 'info@yii2-basic-app.local',
+        'appUrl' => 'http://yii2-basic-app.local',
         'pagination.limit' => 100,
         'bsVersion' => '5.x',
     ];
@@ -13,4 +13,3 @@ if (YII_ENV == 'local') {
 } else {
 
 }
-

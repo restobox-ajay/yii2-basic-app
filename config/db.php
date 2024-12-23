@@ -3,7 +3,7 @@
 if (YII_ENV == 'local'){
     return [
         'class' => 'yii\db\Connection',
-        'dsn' => 'mysql:host=localhost;dbname=darbysb_yii',
+        'dsn' => 'mysql:host=localhost;dbname=yii2_basic_app',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -11,17 +11,17 @@ if (YII_ENV == 'local'){
 }else if(YII_ENV == 'dev'){
     return [
         'class' => 'yii\db\Connection',
-        'dsn' => 'mysql:host=localhost;dbname=darbysb_yii',
-        'username' => 'darbysb_yii',
-        'password' => 'hnP#}Den_1G$',
+        'dsn' => 'mysql:host=localhost;dbname=',
+        'username' => '',
+        'password' => '',
         'charset' => 'utf8',
     ];
 }else{
 	return [
 		'class' => 'yii\db\Connection',
-		'dsn' => 'mysql:host=localhost;dbname=darbyc_yii',
-		'username' => 'darbyc_yii',
-		'password' => 'u2LKf6w3fI&T',
+		'dsn' => 'mysql:host=localhost;dbname=',
+		'username' => '',
+		'password' => '',
 		'charset' => 'utf8',
 		'enableSchemaCache' => true,
 		'schemaCacheDuration' => 60,
