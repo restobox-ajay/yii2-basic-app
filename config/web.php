@@ -12,6 +12,19 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+        'rbac' => [
+            'class' => 'mdm\admin\Module',
+        ]
+    ],
+    'on beforeRequest' => function ($event) {
+        if (!Yii::$app->request->isSecureConnection && !in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1','::1'))) {
+            $url = Yii::$app->request->getAbsoluteUrl();
+            $url = str_replace('http:', 'https:', $url);
+            Yii::$app->getResponse()->redirect($url);
+            Yii::$app->end();
+        }
+    },
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -23,6 +36,9 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -44,12 +60,22 @@ $config = [
             'rules' => [
             ],
         ],
-
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'gii/*',
+            'auth/*',
+            'session/*',
+            'site/*',
+            'test/*',
+            'debug/*',
+        ]
     ],
     'params' => $params,
 ];
 
-if (YII_ENV_DEV) {
+if (YII_ENV == 'local') {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
